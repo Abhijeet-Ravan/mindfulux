@@ -1,96 +1,676 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+
+<html class="scroll-smooth" lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="/_vercel/insights/script.js"></script>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>
+      mindfulux | AI-Integrated Answering Service for Medical Practitioners
+    </title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;family=Roboto:wght@300;400;500&amp;display=swap"
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
     />
-    <title>Vercel HTML Starter</title>
-    <meta
-      name="description"
-      content="High-performance HTML based website template."
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "outline-variant": "#c6c6c6",
+              primary: "#000000",
+              "inverse-on-surface": "#f2f0f0",
+              "surface-container": "#efeded",
+              "inverse-surface": "#2f3031",
+              "on-surface-variant": "#474747",
+              "on-primary-fixed-variant": "#e2e2e2",
+              "primary-container": "#3b3b3b",
+              "on-primary-fixed": "#ffffff",
+              "tertiary-fixed-dim": "#454747",
+              "secondary-fixed-dim": "#ababab",
+              "on-surface": "#1b1c1c",
+              "tertiary-container": "#737575",
+              error: "#ba1a1a",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed": "#c7c6c6",
+              "on-tertiary": "#e2e2e2",
+              "primary-fixed": "#5e5e5e",
+              "inverse-primary": "#c6c6c6",
+              "surface-tint": "#5e5e5e",
+              "on-tertiary-container": "#ffffff",
+              outline: "#777777",
+              secondary: "#5e5e5e",
+              "on-tertiary-fixed": "#ffffff",
+              tertiary: "#3a3c3c",
+              "error-container": "#ffdad6",
+              "on-secondary-fixed": "#1b1c1c",
+              "surface-variant": "#e3e2e2",
+              "surface-container-highest": "#e3e2e2",
+              "surface-dim": "#dbdad9",
+              "on-primary-container": "#ffffff",
+              "surface-container-low": "#f4f3f3",
+              "on-error": "#ffffff",
+              surface: "#faf9f9",
+              "on-tertiary-fixed-variant": "#e2e2e2",
+              "on-secondary": "#ffffff",
+              "primary-fixed-dim": "#474747",
+              "on-secondary-fixed-variant": "#3b3b3c",
+              "surface-container-high": "#e9e8e8",
+              "on-secondary-container": "#1b1c1c",
+              "surface-bright": "#faf9f9",
+              "secondary-container": "#d5d4d4",
+              "on-primary": "#e2e2e2",
+              background: "#faf9f9",
+              "on-background": "#1b1c1c",
+              "on-error-container": "#410002",
+              "tertiary-fixed": "#5d5f5f",
+            },
+            fontFamily: {
+              headline: ["Inter", "sans-serif"],
+              body: ["Roboto", "sans-serif"],
+              label: ["Inter", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 300,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .clinical-gradient {
+        background: linear-gradient(145deg, #000000 0%, #3b3b3b 100%);
+      }
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(24px);
+      }
+      .voice-pulse {
+        animation: pulse 2s infinite ease-in-out;
+      }
+      @keyframes pulse {
+        0% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.3;
+          transform: scale(1.1);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    </style>
   </head>
-  <body>
-    <h1>Vercel HTML Starter</h1>
-    <p>
-      This template is a simple, but powerful single
-      <code>index.html</code> file deployed to
-      <a href="https://vercel.com">Vercel</a>. When your site is deployed, all
-      static assets (like HTML, JavaScript, CSS, images, and more) are deployed
-      globally to every
-      <a href="https://vercel.com/docs/concepts/edge-network/overview"
-        >Vercel Edge Network</a
+  <body class="bg-background text-on-background font-body antialiased">
+    <!-- TopNavBar -->
+    <nav
+      class="fixed top-0 left-0 w-full z-50 bg-[#faf9f9] dark:bg-slate-900 flex justify-between items-center px-8 py-4 max-w-7xl mx-auto left-1/2 -translate-x-1/2"
+    >
+      <div
+        class="text-xl font-bold tracking-tighter text-black dark:text-white font-headline"
       >
-      region.
-    </p>
-    <h2>Simple, privacy-friendly analytics</h2>
-    <p>
-      Want to understand your visitor traffic? Vercel Analytics gives you
-      first-party, privacy-friendly traffic analytics for your HTML site. This
-      template is already configured using the following script:
-    </p>
-    <pre><code>&lt;script defer src="/_vercel/insights/script.js"&gt;&lt;/script&gt;</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/analytics">Vercel Analytics</a>.
-    </p>
-    <h2>Integrated with git</h2>
-    <p>
-      Deploying updates to your site is as simple as
-      <code>git push</code> thanks to Vercel's advanced
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-      Support for GitHub, GitLab, Bitbucket is zero-configuration, and with the
-      flexible Vercel CLI and API, you can integrate with any tool possible.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-    </p>
-    <h2>Fast <code>gzip</code> compression</h2>
-    <p>
-      To help ensure the smallest possible file sizes for your static assets,
-      the Vercel Edge Network compresses files by default using
-      <code>gzip</code>. You can also optionally use
-      <code>brotli</code> compressesion if you prefer.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/edge-network/compression"
-        >compression</a
-      >.
-    </p>
-    <h2>Advanced routing configuration</h2>
-    <p>
-      Vercel gives you a variety of ways to configure the routing of your
-      website. For example, adding redirects, rewrites, or headers to your page.
-      While you can use <code>vercel.json</code> to define these through JSON,
-      you can also express your routing configuration as code using
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-    <p>
-      Middleware runs before the
-      <a href="https://vercel.com/docs/concepts/edge-network/caching"
-        >Vercel Edge Network Cache</a
-      >, so you can configure routing exactly as your application needs. For
-      example, this template uses <code>middleware.js</code> defined in the root
-      of the repository to add additional security headers to the site:
-    </p>
-    <pre><code>referrer-policy: origin-when-cross-origin
-strict-transport-security: max-age=31536000; includeSubDomains; preload
-x-content-type-options: nosniff
-x-dns-prefetch-control: on
-x-frame-options: DENY</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
+        mindfulux
+      </div>
+      <div class="hidden md:flex items-center gap-8">
+        <a
+          class="text-gray-500 hover:text-black transition-colors duration-200 font-headline font-semibold tracking-tight text-sm"
+          href="#features"
+          >Features</a
+        >
+        <a
+          class="text-gray-500 hover:text-black transition-colors duration-200 font-headline font-semibold tracking-tight text-sm"
+          href="#niche"
+          >Niche</a
+        >
+        <a
+          class="text-gray-500 hover:text-black transition-colors duration-200 font-headline font-semibold tracking-tight text-sm"
+          href="#contact"
+          >Contact</a
+        >
+      </div>
+      <button
+        class="bg-primary text-on-primary px-6 py-2 font-headline font-semibold text-sm scale-95 active:scale-90 transition-transform hover:bg-primary-fixed"
+      >
+        Book Demo
+      </button>
+    </nav>
+    <main class="pt-24">
+      <!-- Hero Section -->
+      <section
+        class="max-w-7xl mx-auto px-8 py-24 flex flex-col items-center text-center"
+      >
+        <div
+          class="flex items-center gap-2 bg-primary text-on-primary px-4 py-1.5 rounded-full mb-8"
+        >
+          <span
+            class="material-symbols-outlined text-sm voice-pulse"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >graphic_eq</span
+          >
+          <span
+            class="font-headline text-[10px] font-bold tracking-[0.2em] uppercase"
+            >24/7 Availability</span
+          >
+        </div>
+        <p
+          class="font-headline font-bold text-[#8c8c8c] tracking-[0.4em] text-xs mb-6 uppercase"
+        >
+          CONNECT. ENGAGE. GROW.
+        </p>
+        <h1
+          class="font-headline font-extrabold text-5xl md:text-7xl text-primary max-w-4xl tracking-tighter leading-[1.1] mb-8"
+        >
+          Transform Your Operations with the Power of AI-Integrated Widgets.
+        </h1>
+        <p
+          class="font-body text-on-surface-variant text-lg md:text-xl max-w-[65ch] leading-relaxed mb-12"
+        >
+          Transform your lead engagement with AI-driven automation. Our platform
+          streamlines the entire customer journey—from first contact to final
+          follow-up—maximizing your team's efficiency and conversion rates
+          without losing the personal touch your brand depends on.
+        </p>
+        <div class="flex flex-col md:flex-row gap-4 mb-20">
+          <button
+            class="clinical-gradient text-on-primary px-10 py-4 font-headline font-bold text-base transition-all hover:opacity-90 active:scale-95"
+          >
+            Book Demo
+          </button>
+          <button
+            class="bg-surface-container-highest text-on-surface px-10 py-4 font-headline font-bold text-base transition-all hover:bg-surface-variant active:scale-95"
+          >
+            Speak to AI expert
+          </button>
+        </div>
+        <!-- Video Placeholder -->
+        <div
+          class="w-full aspect-video border-2 border-dashed border-outline-variant bg-surface-container-low flex items-center justify-center group transition-colors hover:bg-surface-container"
+        >
+          <div class="flex flex-col items-center gap-4 text-outline">
+            <span class="material-symbols-outlined text-4xl">play_circle</span>
+            <span class="font-headline font-medium tracking-tight"
+              >Video testimonial coming soon</span
+            >
+          </div>
+        </div>
+      </section>
+      <!-- Pain Points Section -->
+      <section
+        class="max-w-7xl mx-auto px-8 py-32 border-t border-surface-container"
+      >
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div
+            class="p-10 bg-surface-container-lowest border border-[#e0e0e0] flex flex-col items-start gap-6 transition-transform hover:-translate-y-1"
+          >
+            <span class="material-symbols-outlined text-3xl text-primary"
+              >schedule</span
+            >
+            <p
+              class="font-headline font-semibold text-xl leading-tight text-primary"
+            >
+              Save time by automating repetitive support tasks.
+            </p>
+          </div>
+          <div
+            class="p-10 bg-surface-container-lowest border border-[#e0e0e0] flex flex-col items-start gap-6 transition-transform hover:-translate-y-1"
+          >
+            <span class="material-symbols-outlined text-3xl text-primary"
+              >person_add</span
+            >
+            <p
+              class="font-headline font-semibold text-xl leading-tight text-primary"
+            >
+              Increase lead conversion through personalized outreach.
+            </p>
+          </div>
+          <div
+            class="p-10 bg-surface-container-lowest border border-[#e0e0e0] flex flex-col items-start gap-6 transition-transform hover:-translate-y-1"
+          >
+            <span class="material-symbols-outlined text-3xl text-primary"
+              >priority_high</span
+            >
+            <p
+              class="font-headline font-semibold text-xl leading-tight text-primary"
+            >
+              Reduce missed opportunities by ensuring no lead goes uncontacted.
+            </p>
+          </div>
+        </div>
+      </section>
+      <!-- Features Section -->
+      <section class="max-w-7xl mx-auto px-8 py-32 bg-surface" id="features">
+        <h2
+          class="font-headline font-bold text-4xl text-primary mb-16 text-left tracking-tight"
+        >
+          Advanced Clinical Intelligence
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-0">
+          <!-- Row 1 -->
+          <div
+            class="p-12 border-[0.5px] border-outline-variant bg-white border-primary relative"
+          >
+            <div class="flex justify-between items-start mb-8">
+              <span class="material-symbols-outlined text-3xl"
+                >record_voice_over</span
+              >
+              <span
+                class="material-symbols-outlined text-primary voice-pulse"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >graphic_eq</span
+              >
+            </div>
+            <h3 class="font-headline font-bold text-lg mb-2">
+              Human-like AI voice agents
+            </h3>
+            <p class="font-body text-sm text-on-surface-variant">
+              Natural conversation flow designed for patient reassurance.
+            </p>
+          </div>
+          <div class="p-12 border-[0.5px] border-outline-variant bg-white">
+            <span class="material-symbols-outlined text-3xl mb-8"
+              >assignment_turned_in</span
+            >
+            <h3 class="font-headline font-bold text-lg mb-2">
+              Lead qualification &amp; follow-up
+            </h3>
+            <p class="font-body text-sm text-on-surface-variant">
+              Automated triage and persistent engagement cycles.
+            </p>
+          </div>
+          <div class="p-12 border-[0.5px] border-outline-variant bg-white">
+            <span class="material-symbols-outlined text-3xl mb-8"
+              >event_available</span
+            >
+            <h3 class="font-headline font-bold text-lg mb-2">
+              Appointment booking &amp; CRM sync
+            </h3>
+            <p class="font-body text-sm text-on-surface-variant">
+              Direct integration with your existing medical workflow.
+            </p>
+          </div>
+          <!-- Row 2 -->
+          <div class="p-12 border-[0.5px] border-outline-variant bg-white">
+            <span class="material-symbols-outlined text-3xl mb-8"
+              >analytics</span
+            >
+            <h3 class="font-headline font-bold text-lg mb-2">
+              Call recordings &amp; analytics
+            </h3>
+            <p class="font-body text-sm text-on-surface-variant">
+              Detailed transcription and sentiment analysis for every call.
+            </p>
+          </div>
+          <div class="p-12 border-[0.5px] border-outline-variant bg-white">
+            <span class="material-symbols-outlined text-3xl mb-8"
+              >translate</span
+            >
+            <h3 class="font-headline font-bold text-lg mb-2">
+              Multi-language support
+            </h3>
+            <p class="font-body text-sm text-on-surface-variant">
+              Native-level communication in 40+ languages.
+            </p>
+          </div>
+          <div
+            class="p-12 border-[0.5px] border-outline-variant bg-white border-primary"
+          >
+            <div class="flex justify-between items-start mb-8">
+              <span class="material-symbols-outlined text-3xl"
+                >verified_user</span
+              >
+              <span
+                class="material-symbols-outlined text-primary voice-pulse"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >radar</span
+              >
+            </div>
+            <h3 class="font-headline font-bold text-lg mb-2">
+              24/7 availability
+            </h3>
+            <p class="font-body text-sm text-on-surface-variant">
+              Your practice never closes with our always-on AI layer.
+            </p>
+          </div>
+        </div>
+      </section>
+      <!-- Niche Focus Section -->
+      <section class="bg-primary py-32" id="niche">
+        <div
+          class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-24 items-center"
+        >
+          <div>
+            <h2
+              class="font-headline font-bold text-5xl text-on-primary mb-12 tracking-tight"
+            >
+              Specializing in Medical Industry Success.
+            </h2>
+            <ul class="space-y-6">
+              <li
+                class="flex items-center gap-4 text-on-primary border-b border-white/10 pb-4"
+              >
+                <span class="material-symbols-outlined text-on-primary"
+                  >medical_services</span
+                >
+                <span class="font-headline font-medium text-xl"
+                  >Doctor's offices</span
+                >
+              </li>
+              <li
+                class="flex items-center gap-4 text-on-primary border-b border-white/10 pb-4"
+              >
+                <span class="material-symbols-outlined text-on-primary"
+                  >local_hospital</span
+                >
+                <span class="font-headline font-medium text-xl">Clinics</span>
+              </li>
+              <li
+                class="flex items-center gap-4 text-on-primary border-b border-white/10 pb-4"
+              >
+                <span class="material-symbols-outlined text-on-primary"
+                  >home_health</span
+                >
+                <span class="font-headline font-medium text-xl"
+                  >Home health</span
+                >
+              </li>
+              <li
+                class="flex items-center gap-4 text-on-primary border-b border-white/10 pb-4"
+              >
+                <span class="material-symbols-outlined text-on-primary"
+                  >volunteer_activism</span
+                >
+                <span class="font-headline font-medium text-xl"
+                  >Hospice care</span
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="relative">
+            <img
+              alt="Clinical efficiency"
+              class="w-full h-[500px] object-cover rounded-lg filter grayscale contrast-125"
+              data-alt="Modern high-end medical clinic interior with clean white surfaces, soft clinical lighting, and professional atmosphere"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7RQtR7AusLsDeG6p8NgduUzZ21XUf-CLAgBSE5gZjWVliD_UceDYpik84oHSP_7LIuquMXdqpFq1Vs7gJS_ZOvGakOTKCkaaqn5k_0BPGI3jiYXuF6BX3uqcWTlWQN-d7v8wIDkQmmhhItQeZWQ6--28JGMQ02-xhsl-fmYcVAlig3FSizDJpixhX-nACkNkbVyVKbXXEPAorCUl2pwWYUvM1K_6UrahPX_ZuEMKaZiXw8fjigFJOwobve6iltozLXIDeLS_yHu50"
+            />
+            <div
+              class="absolute -bottom-8 -left-8 glass-effect p-8 rounded shadow-2xl"
+            >
+              <p class="font-headline font-bold text-primary text-4xl">99.9%</p>
+              <p
+                class="font-body text-xs tracking-widest text-secondary uppercase"
+              >
+                Response Accuracy
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- How It Works Section -->
+      <section class="max-w-7xl mx-auto px-8 py-32">
+        <h2
+          class="font-headline font-bold text-4xl text-primary mb-24 tracking-tight"
+        >
+          The Integration Path
+        </h2>
+        <div class="flex flex-col md:flex-row gap-12 relative">
+          <!-- Connector Line -->
+          <div
+            class="hidden md:block absolute top-10 left-0 w-full h-[1px] bg-outline-variant -z-10"
+          ></div>
+          <div class="flex-1 group">
+            <div
+              class="w-20 h-20 bg-primary text-on-primary flex items-center justify-center font-headline font-bold text-2xl mb-8 group-hover:scale-110 transition-transform"
+            >
+              01
+            </div>
+            <h3 class="font-headline font-bold text-xl mb-4">
+              Book demo / Speak to expert
+            </h3>
+            <p class="font-body text-on-surface-variant leading-relaxed">
+              Schedule a clinical audit where we analyze your current intake
+              workflow and identify gaps.
+            </p>
+          </div>
+          <div class="flex-1 group">
+            <div
+              class="w-20 h-20 bg-primary text-on-primary flex items-center justify-center font-headline font-bold text-2xl mb-8 group-hover:scale-110 transition-transform"
+            >
+              02
+            </div>
+            <h3 class="font-headline font-bold text-xl mb-4">
+              Custom AI agent configuration
+            </h3>
+            <p class="font-body text-on-surface-variant leading-relaxed">
+              We train your unique AI instance on your specific medical
+              protocols and brand voice.
+            </p>
+          </div>
+          <div class="flex-1 group">
+            <div
+              class="w-20 h-20 bg-primary text-on-primary flex items-center justify-center font-headline font-bold text-2xl mb-8 group-hover:scale-110 transition-transform"
+            >
+              03
+            </div>
+            <h3 class="font-headline font-bold text-xl mb-4">
+              Launch &amp; scale with 24/7 support
+            </h3>
+            <p class="font-body text-on-surface-variant leading-relaxed">
+              Go live in under 48 hours with continuous monitoring and proactive
+              optimization.
+            </p>
+          </div>
+        </div>
+      </section>
+      <!-- Guarantee Section -->
+      <section
+        class="max-w-7xl mx-auto px-8 py-24 bg-surface-container-low mb-32"
+      >
+        <div class="flex flex-col items-center text-center">
+          <div class="mb-10 inline-flex flex-col items-center">
+            <span
+              class="material-symbols-outlined text-6xl text-primary mb-4"
+              style="font-variation-settings: &quot;FILL&quot; 1"
+              >verified_user</span
+            >
+            <h2 class="font-headline font-bold text-3xl tracking-tight mb-2">
+              30-Day Money-Back Guarantee
+            </h2>
+            <p class="font-body text-on-surface-variant max-w-md">
+              Our clinical precision is guaranteed. If you don't see a
+              measurable lift in efficiency, we'll refund your setup cost—no
+              questions asked.
+            </p>
+          </div>
+          <div class="flex flex-col md:flex-row gap-4">
+            <button
+              class="clinical-gradient text-on-primary px-12 py-4 font-headline font-bold text-base hover:opacity-90 transition-all"
+            >
+              Start Your Trial
+            </button>
+            <button
+              class="bg-white border border-outline-variant text-on-surface px-12 py-4 font-headline font-bold text-base hover:bg-surface transition-all"
+            >
+              Request Case Studies
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- Calendar Section -->
+      <section class="max-w-7xl mx-auto px-8 pb-32" id="contact">
+        <div
+          class="w-full min-h-[500px] border-2 border-dashed border-outline-variant bg-surface-container-lowest flex flex-col items-center justify-center gap-4"
+        >
+          <span class="material-symbols-outlined text-4xl text-outline-variant"
+            >calendar_today</span
+          >
+          <p
+            class="font-headline font-bold text-outline-variant uppercase tracking-widest text-sm"
+          >
+            GHL Calendar Embed Here
+          </p>
+          <div class="w-32 h-1 bg-surface-container"></div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-primary py-24">
+      <div class="max-w-7xl mx-auto px-8">
+        <div class="flex flex-col md:flex-row justify-between gap-16 mb-20">
+          <div class="max-w-xs">
+            <div
+              class="text-on-primary text-2xl font-bold tracking-tighter font-headline mb-6"
+            >
+              mindfulux
+            </div>
+            <p class="text-secondary font-body text-sm leading-relaxed">
+              Clinical-grade AI answering services for the next generation of
+              medical practitioners. Precision. Reliability. Human-centric.
+            </p>
+          </div>
+          <div
+            class="grid grid-cols-2 md:grid-cols-3 gap-12 flex-1 md:justify-items-end"
+          >
+            <div>
+              <h4
+                class="text-on-primary font-headline font-bold text-sm uppercase tracking-widest mb-6"
+              >
+                Product
+              </h4>
+              <ul class="space-y-4">
+                <li>
+                  <a
+                    class="text-secondary hover:text-on-primary transition-colors text-sm"
+                    href="#"
+                    >Features</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="text-secondary hover:text-on-primary transition-colors text-sm"
+                    href="#"
+                    >Pricing</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="text-secondary hover:text-on-primary transition-colors text-sm"
+                    href="#"
+                    >Case Studies</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4
+                class="text-on-primary font-headline font-bold text-sm uppercase tracking-widest mb-6"
+              >
+                Industry
+              </h4>
+              <ul class="space-y-4">
+                <li>
+                  <a
+                    class="text-secondary hover:text-on-primary transition-colors text-sm"
+                    href="#"
+                    >Medical</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="text-secondary hover:text-on-primary transition-colors text-sm"
+                    href="#"
+                    >Dental</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="text-secondary hover:text-on-primary transition-colors text-sm"
+                    href="#"
+                    >Wellness</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4
+                class="text-on-primary font-headline font-bold text-sm uppercase tracking-widest mb-6"
+              >
+                Connect
+              </h4>
+              <div class="flex flex-col gap-4">
+                <button
+                  class="flex items-center gap-2 bg-[#25D366] text-white px-4 py-2 rounded text-xs font-bold transition-transform hover:scale-105 w-fit"
+                >
+                  <span
+                    class="material-symbols-outlined text-sm"
+                    style="font-variation-settings: &quot;FILL&quot; 1"
+                    >chat</span
+                  >
+                  WhatsApp Support
+                </button>
+                <div class="flex gap-4 mt-2">
+                  <a
+                    class="text-secondary hover:text-on-primary transition-colors"
+                    href="#"
+                  >
+                    <span class="material-symbols-outlined text-xl"
+                      >social_leaderboard</span
+                    >
+                  </a>
+                  <a
+                    class="text-secondary hover:text-on-primary transition-colors"
+                    href="#"
+                  >
+                    <span class="material-symbols-outlined text-xl"
+                      >camera</span
+                    >
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4"
+        >
+          <p class="text-secondary font-body text-xs">
+            © 2024 mindfulux. All rights reserved.
+          </p>
+          <div class="flex gap-8">
+            <a
+              class="text-secondary hover:text-on-primary transition-colors text-xs"
+              href="#"
+              >Privacy Policy</a
+            >
+            <a
+              class="text-secondary hover:text-on-primary transition-colors text-xs"
+              href="#"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
