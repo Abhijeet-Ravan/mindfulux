@@ -16,10 +16,6 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-      rel="stylesheet"
-    />
     <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -121,12 +117,93 @@
           transform: scale(1);
         }
       }
+
+      /* New Animations */
+      @keyframes cta-pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.4);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+        }
+      }
+      .animate-cta-pulse {
+        animation: cta-pulse 2s infinite;
+      }
+
+      @keyframes wave-pulse {
+        0%,
+        100% {
+          height: 4px;
+        }
+        50% {
+          height: 20px;
+        }
+      }
+      .wave-bar {
+        display: inline-block;
+        width: 3px;
+        background-color: currentColor;
+        border-radius: 1px;
+        margin: 0 1px;
+        animation: wave-pulse 1.2s infinite ease-in-out;
+      }
+      .wave-bar:nth-child(2) {
+        animation-delay: 0.1s;
+      }
+      .wave-bar:nth-child(3) {
+        animation-delay: 0.2s;
+      }
+      .wave-bar:nth-child(4) {
+        animation-delay: 0.3s;
+      }
+      .wave-bar:nth-child(5) {
+        animation-delay: 0.4s;
+      }
+
+      @keyframes status-glow {
+        0%,
+        100% {
+          opacity: 1;
+          filter: drop-shadow(0 0 2px #000);
+        }
+        50% {
+          opacity: 0.5;
+          filter: drop-shadow(0 0 8px #000);
+        }
+      }
+      .animate-status-glow {
+        animation: status-glow 2s infinite ease-in-out;
+      }
+
+      .scroll-reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .scroll-reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .magnetic-hover {
+        transition:
+          transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+          box-shadow 0.4s ease;
+      }
+      .magnetic-hover:hover {
+        transform: translateY(-8px) scale(1.01);
+        box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
+      }
     </style>
   </head>
   <body class="bg-background text-on-background font-body antialiased">
     <!-- TopNavBar -->
     <nav
-      class="fixed top-0 left-0 w-full z-50 bg-[#faf9f9] dark:bg-slate-900 flex justify-between items-center px-8 py-4 max-w-7xl mx-auto left-1/2 -translate-x-1/2"
+      class="fixed top-0 left-0 w-full z-50 bg-[#faf9f9]/90 backdrop-blur-md border-b border-surface-container-high flex justify-between items-center px-8 py-4 max-w-7xl mx-auto left-1/2 -translate-x-1/2"
     >
       <div
         class="text-xl font-bold tracking-tighter text-black dark:text-white font-headline"
@@ -151,7 +228,7 @@
         >
       </div>
       <button
-        class="bg-primary text-on-primary px-6 py-2 font-headline font-semibold text-sm scale-95 active:scale-90 transition-transform hover:bg-primary-fixed"
+        class="bg-primary text-on-primary px-6 py-2 font-headline font-semibold text-sm scale-95 active:scale-90 transition-all hover:bg-primary-fixed animate-cta-pulse"
       >
         Book Demo
       </button>
@@ -159,7 +236,7 @@
     <main class="pt-24">
       <!-- Hero Section -->
       <section
-        class="max-w-7xl mx-auto px-8 py-24 flex flex-col items-center text-center"
+        class="max-w-7xl mx-auto px-8 py-24 flex flex-col items-center text-center scroll-reveal"
       >
         <div
           class="flex items-center gap-2 bg-primary text-on-primary px-4 py-1.5 rounded-full mb-8"
@@ -194,7 +271,7 @@
         </p>
         <div class="flex flex-col md:flex-row gap-4 mb-20">
           <button
-            class="clinical-gradient text-on-primary px-10 py-4 font-headline font-bold text-base transition-all hover:opacity-90 active:scale-95"
+            class="clinical-gradient text-on-primary px-10 py-4 font-headline font-bold text-base transition-all hover:opacity-90 active:scale-95 animate-cta-pulse"
           >
             Book Demo
           </button>
@@ -206,10 +283,15 @@
         </div>
         <!-- Video Placeholder -->
         <div
-          class="w-full aspect-video border-2 border-dashed border-outline-variant bg-surface-container-low flex items-center justify-center group transition-colors hover:bg-surface-container"
+          class="w-full aspect-video border-2 border-dashed border-outline-variant bg-surface-container-low flex items-center justify-center group transition-all hover:bg-surface-container hover:border-primary/30"
         >
-          <div class="flex flex-col items-center gap-4 text-outline">
-            <span class="material-symbols-outlined text-4xl">play_circle</span>
+          <div
+            class="flex flex-col items-center gap-4 text-outline group-hover:text-primary transition-colors"
+          >
+            <span
+              class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform"
+              >play_circle</span
+            >
             <span class="font-headline font-medium tracking-tight"
               >Video testimonial coming soon</span
             >
@@ -222,7 +304,7 @@
       >
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div
-            class="p-10 bg-surface-container-lowest border border-[#e0e0e0] flex flex-col items-start gap-6 transition-transform hover:-translate-y-1"
+            class="p-10 bg-surface-container-lowest border border-[#e0e0e0] flex flex-col items-start gap-6 magnetic-hover scroll-reveal"
           >
             <span class="material-symbols-outlined text-3xl text-primary"
               >schedule</span
@@ -234,7 +316,8 @@
             </p>
           </div>
           <div
-            class="p-10 bg-surface-container-lowest border border-[#e0e0e0] flex flex-col items-start gap-6 transition-transform hover:-translate-y-1"
+            class="p-10 bg-surface-container-lowest border border-[#e0e0e0] flex flex-col items-start gap-6 magnetic-hover scroll-reveal"
+            style="transition-delay: 0.1s"
           >
             <span class="material-symbols-outlined text-3xl text-primary"
               >person_add</span
@@ -246,7 +329,8 @@
             </p>
           </div>
           <div
-            class="p-10 bg-surface-container-lowest border border-[#e0e0e0] flex flex-col items-start gap-6 transition-transform hover:-translate-y-1"
+            class="p-10 bg-surface-container-lowest border border-[#e0e0e0] flex flex-col items-start gap-6 magnetic-hover scroll-reveal"
+            style="transition-delay: 0.2s"
           >
             <span class="material-symbols-outlined text-3xl text-primary"
               >priority_high</span
@@ -262,33 +346,41 @@
       <!-- Features Section -->
       <section class="max-w-7xl mx-auto px-8 py-32 bg-surface" id="features">
         <h2
-          class="font-headline font-bold text-4xl text-primary mb-16 text-left tracking-tight"
+          class="font-headline font-bold text-4xl text-primary mb-16 text-left tracking-tight scroll-reveal"
         >
           Advanced Clinical Intelligence
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-0">
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 gap-0 border-[0.5px] border-outline-variant overflow-hidden"
+        >
           <!-- Row 1 -->
           <div
-            class="p-12 border-[0.5px] border-outline-variant bg-white border-primary relative"
+            class="p-12 border-[0.5px] border-outline-variant bg-white border-primary relative group hover:z-10 magnetic-hover scroll-reveal"
           >
             <div class="flex justify-between items-start mb-8">
               <span class="material-symbols-outlined text-3xl"
                 >record_voice_over</span
               >
-              <span
-                class="material-symbols-outlined text-primary voice-pulse"
-                style="font-variation-settings: &quot;FILL&quot; 1"
-                >graphic_eq</span
-              >
+              <div class="flex items-end h-6 text-primary">
+                <span class="wave-bar"></span>
+                <span class="wave-bar"></span>
+                <span class="wave-bar"></span>
+                <span class="wave-bar"></span>
+                <span class="wave-bar"></span>
+              </div>
             </div>
             <h3 class="font-headline font-bold text-lg mb-2">
               Human-like AI voice agents
             </h3>
             <p class="font-body text-sm text-on-surface-variant">
-              Natural conversation flow designed for patient reassurance.
+              Natural conversation flow designed for patient reassurance with
+              millisecond latency.
             </p>
           </div>
-          <div class="p-12 border-[0.5px] border-outline-variant bg-white">
+          <div
+            class="p-12 border-[0.5px] border-outline-variant bg-white group hover:z-10 magnetic-hover scroll-reveal"
+            style="transition-delay: 0.1s"
+          >
             <span class="material-symbols-outlined text-3xl mb-8"
               >assignment_turned_in</span
             >
@@ -296,10 +388,14 @@
               Lead qualification &amp; follow-up
             </h3>
             <p class="font-body text-sm text-on-surface-variant">
-              Automated triage and persistent engagement cycles.
+              Automated triage and persistent engagement cycles tailored to
+              medical protocols.
             </p>
           </div>
-          <div class="p-12 border-[0.5px] border-outline-variant bg-white">
+          <div
+            class="p-12 border-[0.5px] border-outline-variant bg-white group hover:z-10 magnetic-hover scroll-reveal"
+            style="transition-delay: 0.2s"
+          >
             <span class="material-symbols-outlined text-3xl mb-8"
               >event_available</span
             >
@@ -307,11 +403,15 @@
               Appointment booking &amp; CRM sync
             </h3>
             <p class="font-body text-sm text-on-surface-variant">
-              Direct integration with your existing medical workflow.
+              Direct integration with your existing medical workflow and EHR
+              systems.
             </p>
           </div>
           <!-- Row 2 -->
-          <div class="p-12 border-[0.5px] border-outline-variant bg-white">
+          <div
+            class="p-12 border-[0.5px] border-outline-variant bg-white group hover:z-10 magnetic-hover scroll-reveal"
+            style="transition-delay: 0.3s"
+          >
             <span class="material-symbols-outlined text-3xl mb-8"
               >analytics</span
             >
@@ -319,10 +419,14 @@
               Call recordings &amp; analytics
             </h3>
             <p class="font-body text-sm text-on-surface-variant">
-              Detailed transcription and sentiment analysis for every call.
+              Detailed transcription and sentiment analysis for every patient
+              interaction.
             </p>
           </div>
-          <div class="p-12 border-[0.5px] border-outline-variant bg-white">
+          <div
+            class="p-12 border-[0.5px] border-outline-variant bg-white group hover:z-10 magnetic-hover scroll-reveal"
+            style="transition-delay: 0.4s"
+          >
             <span class="material-symbols-outlined text-3xl mb-8"
               >translate</span
             >
@@ -330,37 +434,44 @@
               Multi-language support
             </h3>
             <p class="font-body text-sm text-on-surface-variant">
-              Native-level communication in 40+ languages.
+              Native-level communication in 40+ languages with accent
+              preservation.
             </p>
           </div>
           <div
-            class="p-12 border-[0.5px] border-outline-variant bg-white border-primary"
+            class="p-12 border-[0.5px] border-outline-variant bg-white border-primary relative group hover:z-10 magnetic-hover scroll-reveal"
+            style="transition-delay: 0.5s"
           >
             <div class="flex justify-between items-start mb-8">
               <span class="material-symbols-outlined text-3xl"
                 >verified_user</span
               >
-              <span
-                class="material-symbols-outlined text-primary voice-pulse"
-                style="font-variation-settings: &quot;FILL&quot; 1"
-                >radar</span
-              >
+              <div class="flex items-center gap-1.5">
+                <span
+                  class="w-2 h-2 rounded-full bg-green-500 animate-status-glow"
+                ></span>
+                <span
+                  class="text-[10px] font-bold uppercase tracking-wider text-green-600"
+                  >Active</span
+                >
+              </div>
             </div>
             <h3 class="font-headline font-bold text-lg mb-2">
               24/7 availability
             </h3>
             <p class="font-body text-sm text-on-surface-variant">
-              Your practice never closes with our always-on AI layer.
+              Your practice never closes with our always-on AI layer handling
+              after-hours calls.
             </p>
           </div>
         </div>
       </section>
       <!-- Niche Focus Section -->
-      <section class="bg-primary py-32" id="niche">
+      <section class="bg-primary py-32 overflow-hidden" id="niche">
         <div
           class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-24 items-center"
         >
-          <div>
+          <div class="scroll-reveal">
             <h2
               class="font-headline font-bold text-5xl text-on-primary mb-12 tracking-tight"
             >
@@ -368,46 +479,56 @@
             </h2>
             <ul class="space-y-6">
               <li
-                class="flex items-center gap-4 text-on-primary border-b border-white/10 pb-4"
+                class="flex items-center gap-4 text-on-primary border-b border-white/10 pb-4 group cursor-default"
               >
-                <span class="material-symbols-outlined text-on-primary"
+                <span
+                  class="material-symbols-outlined text-on-primary transition-transform group-hover:scale-125 duration-300"
                   >medical_services</span
                 >
-                <span class="font-headline font-medium text-xl"
+                <span
+                  class="font-headline font-medium text-xl transition-all group-hover:translate-x-2"
                   >Doctor's offices</span
                 >
               </li>
               <li
-                class="flex items-center gap-4 text-on-primary border-b border-white/10 pb-4"
+                class="flex items-center gap-4 text-on-primary border-b border-white/10 pb-4 group cursor-default"
               >
-                <span class="material-symbols-outlined text-on-primary"
+                <span
+                  class="material-symbols-outlined text-on-primary transition-transform group-hover:scale-125 duration-300"
                   >local_hospital</span
                 >
-                <span class="font-headline font-medium text-xl">Clinics</span>
+                <span
+                  class="font-headline font-medium text-xl transition-all group-hover:translate-x-2"
+                  >Clinics</span
+                >
               </li>
               <li
-                class="flex items-center gap-4 text-on-primary border-b border-white/10 pb-4"
+                class="flex items-center gap-4 text-on-primary border-b border-white/10 pb-4 group cursor-default"
               >
-                <span class="material-symbols-outlined text-on-primary"
+                <span
+                  class="material-symbols-outlined text-on-primary transition-transform group-hover:scale-125 duration-300"
                   >home_health</span
                 >
-                <span class="font-headline font-medium text-xl"
+                <span
+                  class="font-headline font-medium text-xl transition-all group-hover:translate-x-2"
                   >Home health</span
                 >
               </li>
               <li
-                class="flex items-center gap-4 text-on-primary border-b border-white/10 pb-4"
+                class="flex items-center gap-4 text-on-primary border-b border-white/10 pb-4 group cursor-default"
               >
-                <span class="material-symbols-outlined text-on-primary"
+                <span
+                  class="material-symbols-outlined text-on-primary transition-transform group-hover:scale-125 duration-300"
                   >volunteer_activism</span
                 >
-                <span class="font-headline font-medium text-xl"
+                <span
+                  class="font-headline font-medium text-xl transition-all group-hover:translate-x-2"
                   >Hospice care</span
                 >
               </li>
             </ul>
           </div>
-          <div class="relative">
+          <div class="relative scroll-reveal" style="transition-delay: 0.2s">
             <img
               alt="Clinical efficiency"
               class="w-full h-[500px] object-cover rounded-lg filter grayscale contrast-125"
@@ -415,7 +536,7 @@
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7RQtR7AusLsDeG6p8NgduUzZ21XUf-CLAgBSE5gZjWVliD_UceDYpik84oHSP_7LIuquMXdqpFq1Vs7gJS_ZOvGakOTKCkaaqn5k_0BPGI3jiYXuF6BX3uqcWTlWQN-d7v8wIDkQmmhhItQeZWQ6--28JGMQ02-xhsl-fmYcVAlig3FSizDJpixhX-nACkNkbVyVKbXXEPAorCUl2pwWYUvM1K_6UrahPX_ZuEMKaZiXw8fjigFJOwobve6iltozLXIDeLS_yHu50"
             />
             <div
-              class="absolute -bottom-8 -left-8 glass-effect p-8 rounded shadow-2xl"
+              class="absolute -bottom-8 -left-8 glass-effect p-8 rounded shadow-2xl transition-transform hover:scale-105 duration-500"
             >
               <p class="font-headline font-bold text-primary text-4xl">99.9%</p>
               <p
@@ -430,7 +551,7 @@
       <!-- How It Works Section -->
       <section class="max-w-7xl mx-auto px-8 py-32">
         <h2
-          class="font-headline font-bold text-4xl text-primary mb-24 tracking-tight"
+          class="font-headline font-bold text-4xl text-primary mb-24 tracking-tight scroll-reveal"
         >
           The Integration Path
         </h2>
@@ -439,9 +560,9 @@
           <div
             class="hidden md:block absolute top-10 left-0 w-full h-[1px] bg-outline-variant -z-10"
           ></div>
-          <div class="flex-1 group">
+          <div class="flex-1 group scroll-reveal">
             <div
-              class="w-20 h-20 bg-primary text-on-primary flex items-center justify-center font-headline font-bold text-2xl mb-8 group-hover:scale-110 transition-transform"
+              class="w-20 h-20 bg-primary text-on-primary flex items-center justify-center font-headline font-bold text-2xl mb-8 group-hover:scale-110 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-black/20"
             >
               01
             </div>
@@ -453,9 +574,12 @@
               workflow and identify gaps.
             </p>
           </div>
-          <div class="flex-1 group">
+          <div
+            class="flex-1 group scroll-reveal"
+            style="transition-delay: 0.1s"
+          >
             <div
-              class="w-20 h-20 bg-primary text-on-primary flex items-center justify-center font-headline font-bold text-2xl mb-8 group-hover:scale-110 transition-transform"
+              class="w-20 h-20 bg-primary text-on-primary flex items-center justify-center font-headline font-bold text-2xl mb-8 group-hover:scale-110 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-black/20"
             >
               02
             </div>
@@ -467,9 +591,12 @@
               protocols and brand voice.
             </p>
           </div>
-          <div class="flex-1 group">
+          <div
+            class="flex-1 group scroll-reveal"
+            style="transition-delay: 0.2s"
+          >
             <div
-              class="w-20 h-20 bg-primary text-on-primary flex items-center justify-center font-headline font-bold text-2xl mb-8 group-hover:scale-110 transition-transform"
+              class="w-20 h-20 bg-primary text-on-primary flex items-center justify-center font-headline font-bold text-2xl mb-8 group-hover:scale-110 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-black/20"
             >
               03
             </div>
@@ -485,12 +612,12 @@
       </section>
       <!-- Guarantee Section -->
       <section
-        class="max-w-7xl mx-auto px-8 py-24 bg-surface-container-low mb-32"
+        class="max-w-7xl mx-auto px-8 py-24 bg-surface-container-low mb-32 scroll-reveal"
       >
         <div class="flex flex-col items-center text-center">
-          <div class="mb-10 inline-flex flex-col items-center">
+          <div class="mb-10 inline-flex flex-col items-center group">
             <span
-              class="material-symbols-outlined text-6xl text-primary mb-4"
+              class="material-symbols-outlined text-6xl text-primary mb-4 transition-transform group-hover:scale-110 duration-500"
               style="font-variation-settings: &quot;FILL&quot; 1"
               >verified_user</span
             >
@@ -505,7 +632,7 @@
           </div>
           <div class="flex flex-col md:flex-row gap-4">
             <button
-              class="clinical-gradient text-on-primary px-12 py-4 font-headline font-bold text-base hover:opacity-90 transition-all"
+              class="clinical-gradient text-on-primary px-12 py-4 font-headline font-bold text-base hover:opacity-90 transition-all animate-cta-pulse"
             >
               Start Your Trial
             </button>
@@ -518,11 +645,12 @@
         </div>
       </section>
       <!-- Calendar Section -->
-      <section class="max-w-7xl mx-auto px-8 pb-32" id="contact">
+      <section class="max-w-7xl mx-auto px-8 pb-32 scroll-reveal" id="contact">
         <div
-          class="w-full min-h-[500px] border-2 border-dashed border-outline-variant bg-surface-container-lowest flex flex-col items-center justify-center gap-4"
+          class="w-full min-h-[500px] border-2 border-dashed border-outline-variant bg-surface-container-lowest flex flex-col items-center justify-center gap-4 transition-all hover:bg-white hover:border-primary/20"
         >
-          <span class="material-symbols-outlined text-4xl text-outline-variant"
+          <span
+            class="material-symbols-outlined text-4xl text-outline-variant animate-pulse"
             >calendar_today</span
           >
           <p
@@ -530,7 +658,9 @@
           >
             GHL Calendar Embed Here
           </p>
-          <div class="w-32 h-1 bg-surface-container"></div>
+          <div
+            class="w-32 h-1 bg-surface-container transition-all hover:w-48 duration-500"
+          ></div>
         </div>
       </section>
     </main>
@@ -562,7 +692,7 @@
                 <li>
                   <a
                     class="text-secondary hover:text-on-primary transition-colors text-sm"
-                    href="#"
+                    href="#features"
                     >Features</a
                   >
                 </li>
@@ -672,5 +802,43 @@
         </div>
       </div>
     </footer>
+    <script>
+      // Intersection Observer for scroll reveal animations
+      const revealCallback = (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            // Once animated, we don't need to observe it anymore
+            // observer.unobserve(entry.target);
+          }
+        });
+      };
+
+      const revealObserver = new IntersectionObserver(revealCallback, {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      });
+
+      document.querySelectorAll(".scroll-reveal").forEach((el) => {
+        revealObserver.observe(el);
+      });
+
+      // Optional: Magnetic effect logic for even more high-end feel
+      const magneticElements = document.querySelectorAll(".magnetic-hover");
+      magneticElements.forEach((el) => {
+        el.addEventListener("mousemove", (e) => {
+          const rect = el.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+
+          // Very subtle attraction towards mouse
+          el.style.transform = `translate(${x * 0.05}px, ${y * 0.05}px) translateY(-8px) scale(1.01)`;
+        });
+
+        el.addEventListener("mouseleave", () => {
+          el.style.transform = "";
+        });
+      });
+    </script>
   </body>
 </html>
