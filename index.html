@@ -4,9 +4,42 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>
-      mindfulux | AI-Integrated Answering Service for Medical Practitioners
-    </title>
+    <title>mindfulux | AI Answering Service for Medical Clinics</title>
+    <meta
+      name="description"
+      content="Mindfulux provides AI-integrated answering services for medical practitioners. Never miss a patient's call with our 24/7 AI receptionist that books appointments and syncs with your EHR."
+    />
+    <meta
+      name="keywords"
+      content="AI medical receptionist, medical answering service, appointment booking AI, clinical automation, HIPAA reachable AI"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mindfulux.ai/" />
+    <meta
+      property="og:title"
+      content="mindfulux | AI Answering Service for Medical Clinics"
+    />
+    <meta
+      property="og:description"
+      content="24/7 AI receptionist for busy medical clinics. Instantly answer calls and book patients."
+    />
+    <meta
+      property="og:image"
+      content="https://assets.cdn.filesafe.space/3Mh94ewIWZaOQuAxTDt4/media/69c59eb67794bfb79f47c2c7.png"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:title"
+      content="mindfulux | AI Answering Service for Medical Clinics"
+    />
+    <meta
+      property="twitter:description"
+      content="24/7 AI receptionist for busy medical clinics. Instantly answer calls and book patients."
+    />
     <link
       rel="icon"
       type="image/png"
@@ -20,6 +53,7 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
       rel="stylesheet"
+      aria-hidden="true"
     />
     <script id="tailwind-config">
       tailwind.config = {
@@ -49,7 +83,8 @@
               "surface-tint": "oklch(48.19% 0 0)",
               "on-tertiary-container": "oklch(100% 0 0)",
               outline: "oklch(56.93% 0 0)",
-              secondary: "oklch(48.19% 0 0)",
+              secondary: "#8c8c8c",
+              accent: "#f5f5f5",
               "on-tertiary-fixed": "oklch(100% 0 0)",
               tertiary: "oklch(35.42% 0.003 197.03)",
               "error-container": "oklch(91.83% 0.042 25.23)",
@@ -190,12 +225,50 @@
 
       .scroll-reveal {
         opacity: 0;
-        transform: translateY(20px);
-        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        transition:
+          opacity 1.2s cubic-bezier(0.23, 1, 0.32, 1),
+          transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+        will-change: transform, opacity;
       }
+      .reveal-up {
+        transform: translateY(40px);
+      }
+      .reveal-down {
+        transform: translateY(-40px);
+      }
+      .reveal-left {
+        transform: translateX(-40px);
+      }
+      .reveal-right {
+        transform: translateX(40px);
+      }
+      .reveal-zoom {
+        transform: scale(0.95);
+      }
+
       .scroll-reveal.visible {
         opacity: 1;
-        transform: translateY(0);
+        transform: translate(0, 0) scale(1);
+      }
+
+      /* Staggered Delay Utilities */
+      .delay-100 {
+        transition-delay: 100ms;
+      }
+      .delay-200 {
+        transition-delay: 200ms;
+      }
+      .delay-300 {
+        transition-delay: 300ms;
+      }
+      .delay-400 {
+        transition-delay: 400ms;
+      }
+      .delay-500 {
+        transition-delay: 500ms;
+      }
+      .delay-700 {
+        transition-delay: 700ms;
       }
 
       .magnetic-hover {
@@ -272,6 +345,7 @@
         >
           <span
             class="material-symbols-outlined text-sm voice-pulse"
+            aria-hidden="true"
             style="font-variation-settings: &quot;FILL&quot; 1"
             >graphic_eq</span
           >
@@ -286,15 +360,15 @@
           CONNECT. ENGAGE. GROW.
         </p>
         <h1
-          class="font-headline font-extrabold text-5xl md:text-7xl text-primary max-w-4xl tracking-tighter leading-[1.1] mb-8"
+          class="font-headline font-extrabold text-5xl md:text-7xl text-primary max-w-4xl tracking-tighter leading-[1.1] mb-8 scroll-reveal reveal-up"
         >
-          Never Miss a Patient Call Again — Even After Hours
+          Never Miss a Patient's Call Again
         </h1>
         <p
-          class="font-body text-on-surface-variant text-lg md:text-xl max-w-[65ch] leading-relaxed mb-8"
+          class="font-body text-on-surface-variant text-lg md:text-xl max-w-[65ch] leading-relaxed mb-8 scroll-reveal reveal-up delay-100"
         >
-          AI voice agents answer, qualify, and book appointments for your clinic
-          24/7 — without adding staff.
+          Our AI answers your phones and books appointments day or night. It's
+          like having a receptionist who never sleeps.
         </p>
 
         <!-- Supporting Bullets -->
@@ -304,6 +378,7 @@
           <div class="flex items-center gap-2">
             <span
               class="material-symbols-outlined text-primary text-xl"
+              aria-hidden="true"
               style="font-variation-settings: &quot;FILL&quot; 1"
               >check_circle</span
             >
@@ -328,81 +403,191 @@
         </div>
 
         <!-- Hero Actions -->
-        <div class="flex flex-col md:flex-row gap-4 mb-20 w-full md:w-auto">
+        <div
+          class="flex flex-col md:flex-row gap-4 mb-20 w-full md:w-auto flex-wrap justify-center"
+        >
           <a
             href="#contact"
             class="clinical-gradient text-on-primary px-10 py-4 font-headline font-bold text-base transition-all hover:opacity-90 active:scale-95 animate-cta-pulse text-center"
           >
-            Book Demo
+            Book demo
           </a>
           <a
             href="#contact"
             class="bg-surface-container-highest text-on-surface px-10 py-4 font-headline font-bold text-base transition-all hover:bg-surface-variant active:scale-95 border border-outline-variant text-center"
           >
-            Hear a Sample Call
+            Speak to ai expert
           </a>
         </div>
-        <!-- Video Testimonial Preview Section -->
+      </section>
+
+      <!-- Macro Section 2: The Problem -->
+      <section
+        id="problem"
+        class="bg-primary py-32 scroll-reveal text-on-primary overflow-hidden"
+      >
         <div
-          class="flex flex-col md:flex-row gap-12 w-full max-w-5xl items-center"
+          class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-24 items-center mb-24"
         >
-          <!-- Video Placeholder (Smaller and on the left) -->
-          <div
-            class="w-full md:w-2/3 aspect-video border-2 border-dashed border-outline-variant bg-surface-container-low flex items-center justify-center group transition-all hover:bg-surface-container hover:border-primary/30 shrink-0"
-          >
-            <div
-              class="flex flex-col items-center gap-4 text-outline group-hover:text-primary transition-colors"
+          <div>
+            <h2
+              class="font-headline font-bold text-5xl mb-12 tracking-tight leading-[1.1]"
             >
-              <span
-                class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform"
-                >play_circle</span
-              >
-              <span class="font-headline font-medium tracking-tight"
-                >Video testimonial coming soon</span
-              >
+              Every missed call is a missed opportunity.
+            </h2>
+            <div class="space-y-10">
+              <div class="flex items-start gap-6 group">
+                <div
+                  class="w-12 h-12 rounded bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-primary-container transition-colors"
+                >
+                  <span
+                    class="material-symbols-outlined text-on-primary"
+                    aria-hidden="true"
+                    >schedule</span
+                  >
+                </div>
+                <div>
+                  <p class="font-headline font-bold text-xl mb-2">
+                    Nearly half of business calls go unanswered
+                  </p>
+                  <p
+                    class="font-body text-secondary text-sm leading-relaxed max-w-sm"
+                  >
+                    Leads often drop off after hours or when your team is
+                    already stretched thin.
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start gap-6 group">
+                <div
+                  class="w-12 h-12 rounded bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-primary-container transition-colors"
+                >
+                  <span
+                    class="material-symbols-outlined text-on-primary"
+                    aria-hidden="true"
+                    >arrow_forward</span
+                  >
+                </div>
+                <div>
+                  <p class="font-headline font-bold text-xl mb-2">
+                    They move to your competitors
+                  </p>
+                  <p
+                    class="font-body text-secondary text-sm leading-relaxed max-w-sm"
+                  >
+                    If no one answers, potential customers usually move to the
+                    next search result before you can call them back.
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start gap-6 group">
+                <div
+                  class="w-12 h-12 rounded bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-primary-container transition-colors"
+                >
+                  <span
+                    class="material-symbols-outlined text-on-primary"
+                    aria-hidden="true"
+                    >groups_2</span
+                  >
+                </div>
+                <div>
+                  <p class="font-headline font-bold text-xl mb-2">
+                    Scaling shouldn't break the bank
+                  </p>
+                  <p
+                    class="font-body text-secondary text-sm leading-relaxed max-w-sm"
+                  >
+                    Hiring more staff isn't always the sustainable answer. Our
+                    AI handles the heavy lifting so your team can focus on
+                    closing.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
-
-          <!-- Description Text (On the right) -->
-          <div class="text-left space-y-6">
-            <h3
-              class="font-headline font-bold text-2xl text-primary tracking-tight"
-            >
-              Hear results from clinics like yours.
-            </h3>
-            <p
-              class="font-body text-on-surface-variant text-base leading-relaxed"
-            >
-              We're launching our full video case study series soon. Clinics
-              currently using MindfulUX typically report:
-            </p>
-            <ul class="space-y-4">
-              <li class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-primary text-xl"
-                  >trending_up</span
-                >
-                <span class="font-headline font-bold text-sm"
-                  >Up to 40% reduction in staff call load</span
-                >
-              </li>
-              <li class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-primary text-xl"
-                  >done_all</span
-                >
-                <span class="font-headline font-bold text-sm"
-                  >Near 100% after-hours response coverage</span
-                >
-              </li>
-              <li class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-primary text-xl"
-                  >person_add</span
-                >
-                <span class="font-headline font-bold text-sm"
-                  >A measurable increase in appointment bookings</span
-                >
-              </li>
-            </ul>
+          <div class="relative scroll-reveal reveal-right delay-200">
+            <div
+              class="absolute -top-12 -right-12 w-64 h-64 bg-white/5 rounded-full blur-3xl"
+            ></div>
+            <img
+              src="https://assets.cdn.filesafe.space/3Mh94ewIWZaOQuAxTDt4/media/69c5a2ac52ad3b174edf6033.png"
+              alt="Quiet business environment representing missed after-hours opportunities"
+              class="rounded shadow-2xl hover:grayscale transition-all duration-700 w-full object-cover"
+              loading="lazy"
+            />
           </div>
+        </div>
+
+        <!-- Pain points embedded seamlessly into the dark problem narrative -->
+        <div class="max-w-7xl mx-auto px-8 relative z-10">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div
+              class="p-10 bg-white/5 border border-white/10 rounded-xl flex flex-col items-start gap-6 magnetic-hover"
+            >
+              <span
+                class="material-symbols-outlined text-3xl text-primary-container"
+                aria-hidden="true"
+                >schedule</span
+              >
+              <p
+                class="font-headline font-semibold text-xl leading-tight text-on-primary"
+              >
+                Save time by automating repetitive support tasks
+              </p>
+            </div>
+            <div
+              class="p-10 bg-white/5 border border-white/10 rounded-xl flex flex-col items-start gap-6 magnetic-hover"
+              style="transition-delay: 0.1s"
+            >
+              <span
+                class="material-symbols-outlined text-3xl text-primary-container"
+                aria-hidden="true"
+                >person_add</span
+              >
+              <p
+                class="font-headline font-semibold text-xl leading-tight text-on-primary"
+              >
+                Increases lead conversion through personalized outreach
+              </p>
+            </div>
+            <div
+              class="p-10 bg-white/5 border border-white/10 rounded-xl flex flex-col items-start gap-6 magnetic-hover"
+              style="transition-delay: 0.2s"
+            >
+              <span
+                class="material-symbols-outlined text-3xl text-primary-container"
+                aria-hidden="true"
+                >priority_high</span
+              >
+              <p
+                class="font-headline font-semibold text-xl leading-tight text-on-primary"
+              >
+                Reduces missed opportunities by ensuring no lead goes
+                uncontacted
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Platform Mission Section (Relocated Detailed Pitch) -->
+      <section
+        class="bg-surface-container-low py-48 border-y border-outline-variant/30 scroll-reveal reveal-zoom"
+      >
+        <div class="max-w-4xl mx-auto px-8 text-center">
+          <h2
+            class="font-headline font-bold text-2xl text-primary mb-6 tracking-tight"
+          >
+            Transform your lead engagement with AI-driven automation.
+          </h2>
+          <p
+            class="font-body text-on-surface-variant text-lg leading-relaxed italic"
+          >
+            Our platform manages the entire customer journey—from first contact
+            to final follow-up—so your team can focus on closing deals. Increase
+            efficiency and conversion rates without losing the personal touch
+            your brand relies on.
+          </p>
         </div>
       </section>
 
@@ -437,7 +622,9 @@
             </div>
             <span
               class="font-headline font-bold text-sm tracking-tight text-primary"
-              >Trusted by 120+ Medical Clinics</span
+              data-count="120"
+              data-suffix="+"
+              >0+</span
             >
           </div>
 
@@ -446,7 +633,9 @@
             class="flex flex-wrap justify-center items-center gap-8 opacity-60"
           >
             <div class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-xl text-primary"
+              <span
+                class="material-symbols-outlined text-xl text-primary"
+                aria-hidden="true"
                 >verified_user</span
               >
               <span
@@ -455,7 +644,9 @@
               >
             </div>
             <div class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-xl text-primary"
+              <span
+                class="material-symbols-outlined text-xl text-primary"
+                aria-hidden="true"
                 >lock</span
               >
               <span
@@ -464,7 +655,9 @@
               >
             </div>
             <div class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-xl text-primary"
+              <span
+                class="material-symbols-outlined text-xl text-primary"
+                aria-hidden="true"
                 >check_circle</span
               >
               <span
@@ -477,10 +670,15 @@
           <!-- Outcome Metric -->
           <div class="flex flex-col items-center md:items-end gap-1">
             <div class="flex items-center gap-2">
-              <span class="font-headline font-extrabold text-2xl text-primary"
-                >+32%</span
+              <span
+                class="font-headline font-extrabold text-2xl text-primary"
+                data-count="32"
+                data-suffix="%"
+                >+0%</span
               >
-              <span class="material-symbols-outlined text-green-600 text-sm"
+              <span
+                class="material-symbols-outlined text-green-600 text-sm"
+                aria-hidden="true"
                 >trending_up</span
               >
             </div>
@@ -491,82 +689,75 @@
           </div>
         </div>
       </section>
-      <!-- Macro Section 2: The Problem -->
-      <section
-        id="problem"
-        class="bg-primary py-32 scroll-reveal text-on-primary overflow-hidden"
-      >
-        <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-24 items-center mb-24">
-          <div>
-            <h2 class="font-headline font-bold text-5xl mb-12 tracking-tight leading-[1.1]">
-              Every missed call is a lost patient opportunity.
-            </h2>
-            <div class="space-y-10">
-              <div class="flex items-start gap-6 group">
-                <div class="w-12 h-12 rounded bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-primary-container transition-colors">
-                  <span class="material-symbols-outlined text-on-primary">schedule</span>
-                </div>
-                <div>
-                  <p class="font-headline font-bold text-xl mb-2">30–50% Unanswered</p>
-                  <p class="font-body text-secondary text-sm leading-relaxed max-w-sm">
-                    Nearly half of all patient calls go to voicemail after hours or when your staff is overwhelmed at peak periods.
-                  </p>
-                </div>
-              </div>
-              <div class="flex items-start gap-6 group">
-                <div class="w-12 h-12 rounded bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-primary-container transition-colors">
-                  <span class="material-symbols-outlined text-on-primary">arrow_forward</span>
-                </div>
-                <div>
-                  <p class="font-headline font-bold text-xl mb-2">They call the next clinic</p>
-                  <p class="font-body text-secondary text-sm leading-relaxed max-w-sm">
-                    Patients rarely leave voicemails. If nobody answers, they’ve already moved on to your competitors before you can call back.
-                  </p>
-                </div>
-              </div>
-              <div class="flex items-start gap-6 group">
-                <div class="w-12 h-12 rounded bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-primary-container transition-colors">
-                  <span class="material-symbols-outlined text-on-primary">groups_2</span>
-                </div>
-                <div>
-                  <p class="font-headline font-bold text-xl mb-2">Staff can't keep up</p>
-                  <p class="font-body text-secondary text-sm leading-relaxed max-w-sm">
-                    Increasing payroll isn't always the answer. Peak hours and staffing shortages shouldn't be why your growth stalls.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="relative">
-            <div class="absolute -top-12 -right-12 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
-            <img src="https://assets.cdn.filesafe.space/3Mh94ewIWZaOQuAxTDt4/media/69c5a2ac52ad3b174edf6033.png" alt="Silent clinical corridor at night" class="rounded shadow-2xl hover:grayscale transition-all duration-700 w-full object-cover" />
-          </div>
-        </div>
 
-        <!-- Pain points embedded seamlessly into the dark problem narrative -->
-        <div class="max-w-7xl mx-auto px-8 relative z-10">
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="p-10 bg-white/5 border border-white/10 rounded-xl flex flex-col items-start gap-6 magnetic-hover">
-              <span class="material-symbols-outlined text-3xl text-primary-container">schedule</span>
-              <p class="font-headline font-semibold text-xl leading-tight text-on-primary">
-                Stop wasting time on repetitive basic questions.
-              </p>
+      <!-- Video Testimonial Preview Section -->
+      <section class="max-w-7xl mx-auto px-8 py-24 scroll-reveal">
+        <div
+          class="flex flex-col md:flex-row gap-12 w-full max-w-5xl items-center mx-auto"
+        >
+          <!-- Video Placeholder (Smaller and on the left) -->
+          <div
+            class="w-full md:w-2/3 aspect-video border-2 border-dashed border-outline-variant bg-surface-container-low flex items-center justify-center group transition-all hover:bg-surface-container hover:border-primary/30 shrink-0"
+          >
+            <div
+              class="flex flex-col items-center gap-4 text-outline group-hover:text-primary transition-colors"
+            >
+              <span
+                class="material-symbols-outlined text-4xl group-hover:scale-110 transition-transform"
+                aria-hidden="true"
+                >play_circle</span
+              >
+              <span class="font-headline font-medium tracking-tight"
+                >Video testimonial coming soon</span
+              >
             </div>
-            <div class="p-10 bg-white/5 border border-white/10 rounded-xl flex flex-col items-start gap-6 magnetic-hover" style="transition-delay: 0.1s">
-              <span class="material-symbols-outlined text-3xl text-primary-container">person_add</span>
-              <p class="font-headline font-semibold text-xl leading-tight text-on-primary">
-                Increase lead conversion through personalized outreach.
-              </p>
-            </div>
-            <div class="p-10 bg-white/5 border border-white/10 rounded-xl flex flex-col items-start gap-6 magnetic-hover" style="transition-delay: 0.2s">
-              <span class="material-symbols-outlined text-3xl text-primary-container">priority_high</span>
-              <p class="font-headline font-semibold text-xl leading-tight text-on-primary">
-                Never miss a lead or a patient call again.
-              </p>
-            </div>
+          </div>
+
+          <!-- Description Text (On the right) -->
+          <div class="text-left space-y-6">
+            <h3
+              class="font-headline font-bold text-2xl text-primary tracking-tight"
+            >
+              See how we help clinics like yours.
+            </h3>
+            <p
+              class="font-body text-on-surface-variant text-base leading-relaxed"
+            >
+              Our full stories are coming soon. Here is what clinics using
+              MindfulUX are seeing right now:
+            </p>
+            <ul class="space-y-4">
+              <li class="flex items-center gap-3">
+                <span
+                  class="material-symbols-outlined text-primary text-xl"
+                  aria-hidden="true"
+                  >trending_up</span
+                >
+                <span class="font-headline font-bold text-sm"
+                  >Staff spend 40% less time on the phone</span
+                >
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary text-xl"
+                  >done_all</span
+                >
+                <span class="font-headline font-bold text-sm"
+                  >Every after-hours call is answered</span
+                >
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary text-xl"
+                  >person_add</span
+                >
+                <span class="font-headline font-bold text-sm"
+                  >More patients booking appointments</span
+                >
+              </li>
+            </ul>
           </div>
         </div>
       </section>
+
       <!-- Features Section -->
       <section class="max-w-7xl mx-auto px-8 py-32 bg-surface" id="features">
         <h2
@@ -579,10 +770,12 @@
         >
           <!-- Row 1 -->
           <div
-            class="p-12 border-[0.5px] border-outline-variant bg-white border-primary relative group hover:z-10 magnetic-hover scroll-reveal"
+            class="p-12 border-[0.5px] border-outline-variant bg-white border-primary relative group hover:z-10 magnetic-hover scroll-reveal reveal-up"
           >
             <div class="flex justify-between items-start mb-8">
-              <span class="material-symbols-outlined text-3xl"
+              <span
+                class="material-symbols-outlined text-3xl"
+                aria-hidden="true"
                 >record_voice_over</span
               >
               <div class="flex items-end h-6 text-primary">
@@ -594,80 +787,86 @@
               </div>
             </div>
             <h3 class="font-headline font-bold text-lg mb-2">
-              Reassure &amp; Connect
+              Friendly & Fast
             </h3>
             <p class="font-body text-sm text-on-surface-variant">
-              Reassure patients with compassionate, natural-sounding voice
-              assistants and instant response times.
+              Patients get helpful, natural-sounding answers instantly. No more
+              waiting on hold.
             </p>
           </div>
           <div
-            class="p-12 border-[0.5px] border-outline-variant bg-white group hover:z-10 magnetic-hover scroll-reveal"
+            class="p-12 border-[0.5px] border-outline-variant bg-white group hover:z-10 magnetic-hover scroll-reveal reveal-up"
             style="transition-delay: 0.1s"
           >
-            <span class="material-symbols-outlined text-3xl mb-8"
+            <span
+              class="material-symbols-outlined text-3xl mb-8"
+              aria-hidden="true"
               >assignment_turned_in</span
             >
             <h3 class="font-headline font-bold text-lg mb-2">
-              Automated Screening
+              Automatic Sorting
             </h3>
             <p class="font-body text-sm text-on-surface-variant">
-              Stop leaving patients waiting with professional triage and
-              consistent follow-up calls that never miss a beat.
+              The AI sorts every call and follows up automatically, so no
+              patient is left waiting.
             </p>
           </div>
           <div
-            class="p-12 border-[0.5px] border-outline-variant bg-white group hover:z-10 magnetic-hover scroll-reveal"
+            class="p-12 border-[0.5px] border-outline-variant bg-white group hover:z-10 magnetic-hover scroll-reveal reveal-up"
             style="transition-delay: 0.2s"
           >
-            <span class="material-symbols-outlined text-3xl mb-8"
+            <span
+              class="material-symbols-outlined text-3xl mb-8"
+              aria-hidden="true"
               >event_available</span
             >
-            <h3 class="font-headline font-bold text-lg mb-2">
-              One-Click Scheduling
-            </h3>
+            <h3 class="font-headline font-bold text-lg mb-2">Simple Booking</h3>
             <p class="font-body text-sm text-on-surface-variant">
-              Sync with your current calendar to book appointments directly
-              while you sleep—no extra work for your staff.
+              The AI syncs with your calendar to book appointments while you
+              sleep. No extra work for your staff.
             </p>
           </div>
           <!-- Row 2 -->
           <div
-            class="p-12 border-[0.5px] border-outline-variant bg-white group hover:z-10 magnetic-hover scroll-reveal"
+            class="p-12 border-[0.5px] border-outline-variant bg-white group hover:z-10 magnetic-hover scroll-reveal reveal-up"
             style="transition-delay: 0.3s"
           >
-            <span class="material-symbols-outlined text-3xl mb-8"
+            <span
+              class="material-symbols-outlined text-3xl mb-8"
+              aria-hidden="true"
               >analytics</span
             >
             <h3 class="font-headline font-bold text-lg mb-2">
-              Call Summaries &amp; Care Notes
+              Easy Call Recaps
             </h3>
             <p class="font-body text-sm text-on-surface-variant">
-              Review every concern at a glance with summarized care notes and
-              full transcripts of every interaction.
+              See what every call was about at a glance with simple notes and
+              full transcripts.
             </p>
           </div>
           <div
-            class="p-12 border-[0.5px] border-outline-variant bg-white group hover:z-10 magnetic-hover scroll-reveal"
+            class="p-12 border-[0.5px] border-outline-variant bg-white group hover:z-10 magnetic-hover scroll-reveal reveal-up"
             style="transition-delay: 0.4s"
           >
-            <span class="material-symbols-outlined text-3xl mb-8"
+            <span
+              class="material-symbols-outlined text-3xl mb-8"
+              aria-hidden="true"
               >translate</span
             >
-            <h3 class="font-headline font-bold text-lg mb-2">
-              Unlimited Language Support
-            </h3>
+            <h3 class="font-headline font-bold text-lg mb-2">40+ Languages</h3>
             <p class="font-body text-sm text-on-surface-variant">
-              Serve non-English speaking patients perfectly in 40+ languages
-              without hiring additional staff.
+              Serve all your patients in their preferred language without hiring
+              more staff.
             </p>
           </div>
           <div
-            class="p-12 border-[0.5px] border-outline-variant bg-white border-primary relative group hover:z-10 magnetic-hover scroll-reveal"
+            class="p-12 border-[0.5px] border-outline-variant bg-white border-primary relative group hover:z-10 magnetic-hover scroll-reveal reveal-up"
             style="transition-delay: 0.5s"
           >
             <div class="flex justify-between items-start mb-8">
-              <span class="material-symbols-outlined text-3xl"
+              <span
+                class="material-symbols-outlined text-3xl"
+                aria-hidden="true"
                 >verified_user</span
               >
               <div class="flex items-center gap-1.5">
@@ -681,20 +880,18 @@
               </div>
             </div>
             <h3 class="font-headline font-bold text-lg mb-2">
-              Open 24/7, No Overtime
+              Always Open, No Extra Cost
             </h3>
             <p class="font-body text-sm text-on-surface-variant">
-              Never miss a late-night patient call. Your clinic is now
-              effectively open 24/7, even on weekends and holidays.
+              Never miss a late-night call again. Your clinic is now effectively
+              open 24/7.
             </p>
           </div>
         </div>
       </section>
 
       <!-- Comparison Section -->
-      <section
-        class="max-w-7xl mx-auto px-8 pt-16 pb-24 scroll-reveal"
-      >
+      <section class="max-w-7xl mx-auto px-8 pt-16 pb-24 scroll-reveal">
         <div class="text-center max-w-3xl mx-auto mb-16">
           <h2
             class="font-headline font-bold text-4xl text-primary mb-4 tracking-tight"
@@ -814,9 +1011,7 @@
       </section>
 
       <!-- Product Visualization Section: The Interaction Experience -->
-      <section
-        class="max-w-7xl mx-auto px-8 pt-16 pb-32 scroll-reveal"
-      >
+      <section class="max-w-7xl mx-auto px-8 pt-16 pb-32 scroll-reveal">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
           <div class="order-2 md:order-1">
             <div
@@ -832,6 +1027,7 @@
                   >
                     <span
                       class="material-symbols-outlined text-on-primary text-sm"
+                      aria-hidden="true"
                       >call</span
                     >
                   </div>
@@ -894,7 +1090,9 @@
                 class="mt-12 bg-white p-6 rounded border-2 border-primary shadow-xl translate-x-4 animate-pulse relative z-10"
               >
                 <div class="flex items-center gap-4">
-                  <span class="material-symbols-outlined text-primary text-3xl"
+                  <span
+                    class="material-symbols-outlined text-primary text-3xl"
+                    aria-hidden="true"
                     >event_available</span
                   >
                   <div>
@@ -984,6 +1182,7 @@
               >
                 <span
                   class="material-symbols-outlined text-on-primary transition-transform group-hover:scale-125 duration-300"
+                  aria-hidden="true"
                   >medical_services</span
                 >
                 <span
@@ -996,6 +1195,7 @@
               >
                 <span
                   class="material-symbols-outlined text-on-primary transition-transform group-hover:scale-125 duration-300"
+                  aria-hidden="true"
                   >local_hospital</span
                 >
                 <span
@@ -1008,6 +1208,7 @@
               >
                 <span
                   class="material-symbols-outlined text-on-primary transition-transform group-hover:scale-125 duration-300"
+                  aria-hidden="true"
                   >home_health</span
                 >
                 <span
@@ -1020,6 +1221,7 @@
               >
                 <span
                   class="material-symbols-outlined text-on-primary transition-transform group-hover:scale-125 duration-300"
+                  aria-hidden="true"
                   >volunteer_activism</span
                 >
                 <span
@@ -1035,6 +1237,7 @@
               class="w-full h-[500px] object-cover rounded-lg filter grayscale contrast-125"
               data-alt="Modern high-end medical clinic interior with clean white surfaces, soft clinical lighting, and professional atmosphere"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7RQtR7AusLsDeG6p8NgduUzZ21XUf-CLAgBSE5gZjWVliD_UceDYpik84oHSP_7LIuquMXdqpFq1Vs7gJS_ZOvGakOTKCkaaqn5k_0BPGI3jiYXuF6BX3uqcWTlWQN-d7v8wIDkQmmhhItQeZWQ6--28JGMQ02-xhsl-fmYcVAlig3FSizDJpixhX-nACkNkbVyVKbXXEPAorCUl2pwWYUvM1K_6UrahPX_ZuEMKaZiXw8fjigFJOwobve6iltozLXIDeLS_yHu50"
+              loading="lazy"
             />
             <div
               class="absolute -bottom-8 -left-8 glass-effect p-8 rounded shadow-2xl transition-transform hover:scale-105 duration-500"
@@ -1068,11 +1271,11 @@
               01
             </div>
             <h3 class="font-headline font-bold text-xl mb-4">
-              Step 1: Analyzing current calls
+              Step 1: Checking your current calls
             </h3>
             <p class="font-body text-on-surface-variant leading-relaxed">
-              We analyze how your clinic currently handles calls and where
-              patients are falling through the gaps.
+              We look at how your clinic handles calls now and where patients
+              might be getting missed.
             </p>
           </div>
           <div
@@ -1085,11 +1288,11 @@
               02
             </div>
             <h3 class="font-headline font-bold text-xl mb-4">
-              Step 2: Matching your workflow
+              Step 2: Setting things up your way
             </h3>
             <p class="font-body text-on-surface-variant leading-relaxed">
-              We train your AI receptionist to follow your office's specific
-              rules, medical protocols, and brand voice.
+              We train your AI to follow your specific rules and talk just like
+              a member of your team.
             </p>
           </div>
           <div
@@ -1102,28 +1305,27 @@
               03
             </div>
             <h3 class="font-headline font-bold text-xl mb-4">
-              Step 3: Go live in 48 hours
+              Step 3: Start in just 2 days
             </h3>
             <p class="font-body text-on-surface-variant leading-relaxed">
-              Go live in under 48 hours—we'll stay by your side to make sure
-              every single patient call is handled perfectly.
+              You can be up and running in under 48 hours. We’ll be right there
+              to make sure everything works perfectly.
             </p>
           </div>
         </div>
       </section>
       <!-- Guarantee Section -->
-      <section
-        class="max-w-7xl mx-auto px-8 py-16 scroll-reveal"
-      >
+      <section class="max-w-7xl mx-auto px-8 py-16 scroll-reveal">
         <div class="flex flex-col items-center text-center">
           <div class="mb-10 inline-flex flex-col items-center group">
             <span
               class="material-symbols-outlined text-6xl text-primary mb-4 transition-transform group-hover:scale-110 duration-500"
+              aria-hidden="true"
               style="font-variation-settings: &quot;FILL&quot; 1"
               >verified_user</span
             >
             <h2 class="font-headline font-bold text-3xl tracking-tight mb-4">
-              30-Day Performance Guarantee
+              30 day money back guarantee
             </h2>
             <p class="font-body text-on-surface-variant max-w-lg">
               If you don’t see measurable improvement in call handling or
@@ -1131,18 +1333,20 @@
               questions asked.
             </p>
           </div>
-          <div class="flex flex-col md:flex-row items-center gap-6">
+          <div
+            class="flex flex-col md:flex-row flex-wrap justify-center items-center gap-6"
+          >
             <a
               href="#contact"
               class="clinical-gradient text-on-primary px-12 py-4 font-headline font-bold text-base hover:opacity-90 transition-all animate-cta-pulse text-center w-full md:w-auto"
             >
-              Book Demo
+              Book demo
             </a>
             <a
               href="#contact"
               class="bg-white border border-outline-variant text-on-surface px-12 py-4 font-headline font-bold text-base hover:bg-surface transition-all text-center w-full md:w-auto"
             >
-              Hear a Sample Call
+              Speak to ai expert
             </a>
           </div>
           <a
@@ -1153,13 +1357,18 @@
           </a>
         </div>
       </section>
+
       <!-- Calendar Section -->
-      <section class="max-w-7xl mx-auto px-8 pb-32 pt-16 scroll-reveal" id="contact">
+      <section
+        class="max-w-7xl mx-auto px-8 pb-32 pt-16 scroll-reveal"
+        id="contact"
+      >
         <div
           class="w-full min-h-[500px] border-2 border-dashed border-outline-variant bg-surface-container-lowest flex flex-col items-center justify-center gap-4 transition-all hover:bg-white hover:border-primary/20"
         >
           <span
             class="material-symbols-outlined text-4xl text-outline-variant animate-pulse"
+            aria-hidden="true"
             >calendar_today</span
           >
           <p
@@ -1182,12 +1391,13 @@
               <img
                 src="https://assets.cdn.filesafe.space/3Mh94ewIWZaOQuAxTDt4/media/69c59eb67794bfb79f47c2c7.png"
                 alt="mindfulux logo"
-                class="h-10 w-auto object-contain brightness-0 invert"
+                class="h-10 w-auto object-contain invert"
+                loading="lazy"
               />
             </div>
-            <p class="text-secondary font-body text-sm leading-relaxed">
-              Clinical-grade AI answering services for the next generation of
-              medical practitioners. Precision. Reliability. Human-centric.
+            <p class="text-accent/80 font-body text-sm leading-relaxed">
+              Simple AI answering services for busy medical clinics. Reliable,
+              fast, and always friendly.
             </p>
           </div>
           <div
@@ -1262,9 +1472,11 @@
               <div class="flex flex-col gap-4">
                 <button
                   class="flex items-center gap-2 bg-[oklch(76.54%_0.199_152.92)] text-white px-4 py-2 rounded text-xs font-bold transition-transform hover:scale-105 w-fit"
+                  aria-label="Contact WhatsApp Support"
                 >
                   <span
                     class="material-symbols-outlined text-sm"
+                    aria-hidden="true"
                     style="font-variation-settings: &quot;FILL&quot; 1"
                     >chat</span
                   >
@@ -1272,20 +1484,16 @@
                 </button>
                 <div class="flex gap-4 mt-2">
                   <a
-                    class="text-secondary hover:text-on-primary transition-colors"
+                    class="text-secondary hover:text-on-primary transition-colors text-sm font-headline font-medium"
                     href="#"
                   >
-                    <span class="material-symbols-outlined text-xl"
-                      >social_leaderboard</span
-                    >
+                    Facebook
                   </a>
                   <a
-                    class="text-secondary hover:text-on-primary transition-colors"
+                    class="text-secondary hover:text-on-primary transition-colors text-sm font-headline font-medium"
                     href="#"
                   >
-                    <span class="material-symbols-outlined text-xl"
-                      >camera</span
-                    >
+                    Instagram
                   </a>
                 </div>
               </div>
@@ -1296,7 +1504,7 @@
           class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4"
         >
           <p class="text-secondary font-body text-xs">
-            © 2024 mindfulux. All rights reserved.
+            © 2026 mindfulux. All rights reserved.
           </p>
           <div class="flex gap-8">
             <a
@@ -1314,13 +1522,40 @@
       </div>
     </footer>
     <script>
-      // Intersection Observer for scroll reveal animations
+      // Count-up animation logic
+      const animateValue = (el) => {
+        const targetAttr = el.getAttribute("data-count");
+        if (!targetAttr) return;
+        const target = parseInt(targetAttr);
+        const suffix = el.getAttribute("data-suffix") || "";
+        const duration = 2000;
+        let startTimestamp = null;
+
+        const step = (timestamp) => {
+          if (!startTimestamp) startTimestamp = timestamp;
+          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+          const current = Math.floor(progress * target);
+          el.innerText = current + suffix;
+          if (progress < 1) {
+            window.requestAnimationFrame(step);
+          } else {
+            el.innerText = target + suffix;
+          }
+        };
+        window.requestAnimationFrame(step);
+      };
+
+      // Intersection Observer for scroll reveal and counters
       const revealCallback = (entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("visible");
-            // Once animated, we don't need to observe it anymore
-            // observer.unobserve(entry.target);
+
+            // Trigger count animation if it's a counter
+            if (entry.target.hasAttribute("data-count")) {
+              animateValue(entry.target);
+              observer.unobserve(entry.target); // Anim only once
+            }
           }
         });
       };
@@ -1330,19 +1565,19 @@
         rootMargin: "0px 0px -50px 0px",
       });
 
-      document.querySelectorAll(".scroll-reveal").forEach((el) => {
-        revealObserver.observe(el);
-      });
+      document
+        .querySelectorAll(".scroll-reveal, [data-count]")
+        .forEach((el) => {
+          revealObserver.observe(el);
+        });
 
-      // Optional: Magnetic effect logic for even more high-end feel
+      // Magnetic effect logic
       const magneticElements = document.querySelectorAll(".magnetic-hover");
       magneticElements.forEach((el) => {
         el.addEventListener("mousemove", (e) => {
           const rect = el.getBoundingClientRect();
           const x = e.clientX - rect.left - rect.width / 2;
           const y = e.clientY - rect.top - rect.height / 2;
-
-          // Very subtle attraction towards mouse
           el.style.transform = `translate(${x * 0.05}px, ${y * 0.05}px) translateY(-8px) scale(1.01)`;
         });
 
