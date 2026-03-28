@@ -281,6 +281,53 @@
         transform: translate(0, 0) scale(1);
       }
 
+      /* Integration Path Advanced Animations */
+      .connector-fill {
+        width: 0;
+        transition: width 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+      }
+      .scroll-reveal.visible .connector-fill {
+        width: 100%;
+      }
+
+      .step-number-container {
+        position: relative;
+        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      .step-number-container .step-number {
+        transition:
+          opacity 0.4s ease,
+          transform 0.4s ease;
+      }
+      .step-number-container .step-icon {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transform: scale(0.5);
+        transition:
+          opacity 0.4s ease,
+          transform 0.4s ease;
+      }
+
+      .group:hover .step-number-container .step-number {
+        opacity: 0;
+        transform: scale(1.5);
+      }
+      .group:hover .step-number-container .step-icon {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      /* Enhanced Magnetic Response */
+      .magnetic-hover {
+        transition:
+          transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+          box-shadow 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+
       /* Staggered Delay Utilities */
       .delay-100 {
         transition-delay: 100ms;
@@ -1285,7 +1332,9 @@
           </div>
         </div>
       </section>
-      <!-- Macro Section 4: Proof & Onboarding -->
+      <!-- Macro Section 4: Integration & Onboarding Flow
+           This section uses a horizontal step-by-step layout (on desktop) to 
+           demonstrate the "Integration Path" for new clinics. -->
       <section class="max-w-7xl mx-auto px-8 pt-32 pb-16">
         <h2
           class="font-headline font-bold text-4xl text-primary mb-24 tracking-tight scroll-reveal"
@@ -1293,17 +1342,23 @@
           The Integration Path
         </h2>
         <div class="flex flex-col md:flex-row gap-12 relative">
-          <!-- Connector Line -->
+          <!-- Connector Line: Visual horizontal bar that connects the step numbers on desktop. 
+               The 'connector-fill' div handles the progressive drawing animation. -->
           <div
             class="hidden md:block absolute top-10 left-0 w-full h-[1px] bg-outline-variant -z-10"
-          ></div>
-          <div class="flex-1 group scroll-reveal">
+          >
+            <div class="connector-fill h-full bg-primary shadow-[0_0_10px_oklch(0%_0_0/20%)]"></div>
+          </div>
+
+          <!-- Step 1: Initial Discovery Phase -->
+          <div class="flex-1 group scroll-reveal reveal-up">
             <div
-              class="w-20 h-20 bg-primary text-on-primary flex items-center justify-center font-headline font-bold text-2xl mb-8 group-hover:scale-110 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-black/20"
+              class="step-number-container w-20 h-20 bg-primary text-on-primary flex items-center justify-center mb-8 group-hover:shadow-xl group-hover:shadow-primary/20"
             >
-              01
+              <span class="step-number font-headline font-bold text-2xl">01</span>
+              <span class="step-icon material-symbols-outlined text-3xl" aria-hidden="true">search</span>
             </div>
-            <h3 class="font-headline font-bold text-xl mb-4">
+            <h3 class="font-headline font-bold text-xl mb-4 text-primary group-hover:translate-x-1 transition-transform">
               Step 1: Checking your current calls
             </h3>
             <p class="font-body text-on-surface-variant leading-relaxed">
@@ -1311,16 +1366,19 @@
               might be getting missed.
             </p>
           </div>
+
+          <!-- Step 2: Training & Ruleset Customization -->
           <div
-            class="flex-1 group scroll-reveal"
+            class="flex-1 group scroll-reveal reveal-up"
             style="transition-delay: 0.1s"
           >
             <div
-              class="w-20 h-20 bg-primary text-on-primary flex items-center justify-center font-headline font-bold text-2xl mb-8 group-hover:scale-110 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-black/20"
+              class="step-number-container w-20 h-20 bg-primary text-on-primary flex items-center justify-center mb-8 group-hover:shadow-xl group-hover:shadow-primary/20"
             >
-              02
+              <span class="step-number font-headline font-bold text-2xl">02</span>
+              <span class="step-icon material-symbols-outlined text-3xl" aria-hidden="true">settings</span>
             </div>
-            <h3 class="font-headline font-bold text-xl mb-4">
+            <h3 class="font-headline font-bold text-xl mb-4 text-primary group-hover:translate-x-1 transition-transform">
               Step 2: Setting things up your way
             </h3>
             <p class="font-body text-on-surface-variant leading-relaxed">
@@ -1328,16 +1386,19 @@
               a member of your team.
             </p>
           </div>
+
+          <!-- Step 3: Go-Live & Monitoring -->
           <div
-            class="flex-1 group scroll-reveal"
+            class="flex-1 group scroll-reveal reveal-up"
             style="transition-delay: 0.2s"
           >
             <div
-              class="w-20 h-20 bg-primary text-on-primary flex items-center justify-center font-headline font-bold text-2xl mb-8 group-hover:scale-110 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-black/20"
+              class="step-number-container w-20 h-20 bg-primary text-on-primary flex items-center justify-center mb-8 group-hover:shadow-xl group-hover:shadow-primary/20"
             >
-              03
+              <span class="step-number font-headline font-bold text-2xl">03</span>
+              <span class="step-icon material-symbols-outlined text-3xl" aria-hidden="true">rocket_launch</span>
             </div>
-            <h3 class="font-headline font-bold text-xl mb-4">
+            <h3 class="font-headline font-bold text-xl mb-4 text-primary group-hover:translate-x-1 transition-transform">
               Step 3: Start in just 2 days
             </h3>
             <p class="font-body text-on-surface-variant leading-relaxed">
