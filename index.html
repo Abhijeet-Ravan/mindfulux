@@ -80,6 +80,9 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;family=Roboto:wght@300;400;500&amp;display=swap"
       rel="stylesheet"
     />
+    <!-- GSAP for Semantic Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
       rel="stylesheet"
@@ -254,31 +257,7 @@
       }
 
       .scroll-reveal {
-        opacity: 0;
-        transition:
-          opacity 1.2s cubic-bezier(0.23, 1, 0.32, 1),
-          transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
         will-change: transform, opacity;
-      }
-      .reveal-up {
-        transform: translateY(40px);
-      }
-      .reveal-down {
-        transform: translateY(-40px);
-      }
-      .reveal-left {
-        transform: translateX(-40px);
-      }
-      .reveal-right {
-        transform: translateX(40px);
-      }
-      .reveal-zoom {
-        transform: scale(0.95);
-      }
-
-      .scroll-reveal.visible {
-        opacity: 1;
-        transform: translate(0, 0) scale(1);
       }
 
       /* Integration Path Advanced Animations */
@@ -1616,69 +1595,158 @@
       </div>
     </footer>
     <script>
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Reduced motion fallback
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
       // Count-up animation logic
       const animateValue = (el) => {
         const targetAttr = el.getAttribute("data-count");
         if (!targetAttr) return;
         const target = parseInt(targetAttr);
         const suffix = el.getAttribute("data-suffix") || "";
-        const duration = 2000;
-        let startTimestamp = null;
+        const obj = { value: 0 };
 
-        const step = (timestamp) => {
-          if (!startTimestamp) startTimestamp = timestamp;
-          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-          const current = Math.floor(progress * target);
-          el.innerText = current + suffix;
-          if (progress < 1) {
-            window.requestAnimationFrame(step);
-          } else {
-            el.innerText = target + suffix;
-          }
-        };
-        window.requestAnimationFrame(step);
+        gsap.to(obj, {
+          value: target,
+          duration: 2,
+          ease: "power2.out",
+          onUpdate: () => {
+            el.innerText = Math.floor(obj.value) + suffix;
+          },
+          scrollTrigger: {
+            trigger: el,
+            start: "top 90%",
+            once: true,
+          },
+        });
       };
 
-      // Intersection Observer for scroll reveal and counters
-      const revealCallback = (entries, observer) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
+      // Semantic Animations: Hero Entrance (Tempo / Brand Rhythm + Attention Guidance)
+      // sets the measured, professional pace for the clinical brand and leads eye to value prop
+      if (!prefersReducedMotion) {
+        const heroTimeline = gsap.timeline({ defaults: { ease: "power3.out" } });
+        
+        heroTimeline
+          .from("#hero", { opacity: 0, duration: 1 })
+          .from("#hero h1", { opacity: 0, y: 30, duration: 1 }, "-=0.5")
+          .from("#hero p", { opacity: 0, y: 20, duration: 0.8 }, "-=0.7")
+          .from("#hero .flex-col.md\\:flex-row.gap-6 > div", { 
+            opacity: 0, 
+            y: 10, 
+            stagger: 0.1, 
+            duration: 0.6 
+          }, "-=0.5")
+          .from("#hero .flex-col.md\\:flex-row.gap-4 a", { 
+            opacity: 0, 
+            scale: 0.9, 
+            stagger: 0.2, 
+            duration: 0.5 
+          }, "-=0.3");
 
-            // Trigger count animation if it's a counter
-            if (entry.target.hasAttribute("data-count")) {
-              animateValue(entry.target);
-              observer.unobserve(entry.target); // Anim only once
+        // Semantic Animations: Section Reveals (Information Reveal)
+        // Animates in sections as user needs them to manage cognitive load during scroll
+        document.querySelectorAll(".scroll-reveal").forEach((el) => {
+          if (el.id === "hero") return; // Skip hero as it has its own timeline
+
+          const revealProps = {
+            opacity: 0,
+            y: el.classList.contains("reveal-up") ? 40 : 
+               el.classList.contains("reveal-down") ? -40 : 
+               0,
+            x: el.classList.contains("reveal-left") ? -40 : 
+               el.classList.contains("reveal-right") ? 40 : 
+               0,
+            scale: el.classList.contains("reveal-zoom") ? 0.95 : 1,
+            duration: 1.2,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 85%",
+              once: true,
+              onEnter: () => el.classList.add("visible") // Keep for any legacy CSS
             }
+          };
+
+          gsap.from(el, revealProps);
+        });
+
+        // Grid Staggers (Information Reveal + Tempo)
+        // Staggered reveals for feature cards to show logical sequence and set pace
+        gsap.from("#features .grid > div", {
+          opacity: 0,
+          y: 30,
+          stagger: 0.1,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: "#features .grid",
+            start: "top 80%",
+            once: true
           }
         });
-      };
 
-      const revealObserver = new IntersectionObserver(revealCallback, {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
-      });
+        // Staggered reveals for problem cards (Information Reveal)
+        gsap.from("#problem .grid-cols-1.md\\:grid-cols-3 > div", {
+          opacity: 0,
+          y: 20,
+          stagger: 0.1,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: "#problem .grid-cols-1.md\\:grid-cols-3",
+            start: "top 80%",
+            once: true
+          }
+        });
+      }
 
-      document
-        .querySelectorAll(".scroll-reveal, [data-count]")
-        .forEach((el) => {
-          revealObserver.observe(el);
+      // Initialize counters
+      document.querySelectorAll("[data-count]").forEach(animateValue);
+
+      // Refined Magnetic Effect (Spatial Context / Feedback)
+      // Provides tactile depth and confirms interactivity of cards
+      if (!prefersReducedMotion) {
+        document.querySelectorAll(".magnetic-hover").forEach((el) => {
+          el.addEventListener("mousemove", (e) => {
+            const rect = el.getBoundingClientRect();
+            const x = (e.clientX - rect.left - rect.width / 2) * 0.15;
+            const y = (e.clientY - rect.top - rect.height / 2) * 0.15;
+            
+            gsap.to(el, {
+              x: x,
+              y: y - 8,
+              scale: 1.02,
+              duration: 0.4,
+              ease: "power2.out",
+              overwrite: "auto"
+            });
+          });
+
+          el.addEventListener("mouseleave", () => {
+            gsap.to(el, {
+              x: 0,
+              y: 0,
+              scale: 1,
+              duration: 0.6,
+              ease: "elastic.out(1, 0.3)",
+              overwrite: "auto"
+            });
+          });
         });
 
-      // Magnetic effect logic
-      const magneticElements = document.querySelectorAll(".magnetic-hover");
-      magneticElements.forEach((el) => {
-        el.addEventListener("mousemove", (e) => {
-          const rect = el.getBoundingClientRect();
-          const x = e.clientX - rect.left - rect.width / 2;
-          const y = e.clientY - rect.top - rect.height / 2;
-          el.style.transform = `translate(${x * 0.05}px, ${y * 0.05}px) translateY(-8px) scale(1.01)`;
+        // Navigation Link Interaction (Feedback)
+        // Quick visual confirmation on nav hover
+        document.querySelectorAll("nav a").forEach((link) => {
+          link.addEventListener("mouseenter", () => {
+            gsap.to(link, { opacity: 0.7, scale: 0.98, duration: 0.2 });
+          });
+          link.addEventListener("mouseleave", () => {
+            gsap.to(link, { opacity: 1, scale: 1, duration: 0.2 });
+          });
         });
-
-        el.addEventListener("mouseleave", () => {
-          el.style.transform = "";
-        });
-      });
+      }
     </script>
   </body>
 </html>
